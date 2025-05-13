@@ -3,17 +3,17 @@
 
 #include "SmartEnum.h"
 
-#define SMARTENUM_IceCreamFlavor(_)\
-    _(CHOCOLATE, 56)\
-    _(VANILLA, 27)\
-    _(STRAWBERRY, 11)\
-    _(PISTACHIO, 72)\
-    _(HAM, 40)
+#define _IceCreamFlavor(_, $)\
+    _($, CHOCOLATE, 56)\
+    _($, VANILLA, 27)\
+    _($, STRAWBERRY, 11)\
+    _($, PISTACHIO, 72)\
+    _($, HAM, 40)
 
 // declaration of the enum and the associated functions
-SMARTENUM_DECLARE(SMARTENUM_IceCreamFlavor, IceCreamFlavor)
+SMARTENUM_DECLARE(_IceCreamFlavor, IceCreamFlavor)
 // definitions of the functions
-SMARTENUM_DEFINE(SMARTENUM_IceCreamFlavor, IceCreamFlavor)
+SMARTENUM_DEFINE(_IceCreamFlavor, IceCreamFlavor)
 
 void dump_IceCreamFlavor()
 {
