@@ -1,4 +1,5 @@
 #include <string.h> // for strcmp
+#include <stdbool.h> // for bool
 
 #define $(class, method) class##_##method
 
