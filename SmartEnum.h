@@ -1,7 +1,6 @@
 #include <string.h> // for strcmp
 
-#define $_METHOD_SEPARATOR _
-#define $(class, method) class##$_METHOD_SEPARATOR##method
+#define $(class, method) class##_##method
 
 /*
 	UTILS MACROS
@@ -193,7 +192,13 @@ __SMARTENUM_FUNCTION_LAST_PRIVATE(enum_name)\
 }\
 __SMARTENUM_FUNCTION_LAST(enum_name)\
 {\
-	static enum_name last = $(enum_name, last_private)();\
+	static enum_name last;\
+	static bool initialized = false;\
+	if(!initialized)\
+	{\
+		last = $(enum_name, last_private)();\
+		initialized = true;\
+	}\
 	return last;\
 }
 
@@ -206,7 +211,13 @@ __SMARTENUM_FUNCTION_MIN_PRIVATE(enum_name)\
 }\
 __SMARTENUM_FUNCTION_MIN(enum_name)\
 {\
-	static enum_name min = $(enum_name, min_private)();\
+	static enum_name min;\
+	static bool initialized = false;\
+	if(!initialized)\
+	{\
+		min = $(enum_name, min_private)();\
+		initialized = true;\
+	}\
 	return min;\
 }
 
@@ -221,7 +232,13 @@ __SMARTENUM_FUNCTION_MAX_PRIVATE(enum_name)\
 }\
 __SMARTENUM_FUNCTION_MAX(enum_name)\
 {\
-	static enum_name max = $(enum_name, max_private)();\
+	static enum_name max;\
+	static bool initialized = false;\
+	if(!initialized)\
+	{\
+		max = $(enum_name, max_private)();\
+		initialized = true;\
+	}\
 	return max;\
 }
 /* MACRO FOR SMARTENUMS FUNCTIONS DEFINITIONS (END) */
@@ -257,4 +274,3 @@ __SMARTENUM_DEFINE_FUNCTION_LAST(MACRO_DEFINITION, enum_name)\
 __SMARTENUM_DEFINE_FUNCTION_MIN(MACRO_DEFINITION, enum_name)\
 __SMARTENUM_DEFINE_FUNCTION_MAX(MACRO_DEFINITION, enum_name)
 /* SMART ENUM DEFINITION (END) */
-
